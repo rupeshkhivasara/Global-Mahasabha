@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "1018019237308",
+    "firebase_url": "https://djmahasabha-f3ec1.firebaseio.com",
+    "project_id": "djmahasabha-f3ec1",
+    "storage_bucket": "djmahasabha-f3ec1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1018019237308:android:0b9ac54a4d8724e022afb9",
+        "android_client_info": {
+          "package_name": "com.drydayalerts"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQN3fa-jadFbGyne2jAMEuPpxX52Z1Ens"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1018019237308:android:971fa614faf86d2d22afb9",
+        "android_client_info": {
+          "package_name": "rksolution.mahasabha.jobs"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQN3fa-jadFbGyne2jAMEuPpxX52Z1Ens"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
