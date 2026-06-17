@@ -31,10 +31,11 @@ local.properties
 *.iml
 *.hprof
 .cxx/
-*.keystore
-!debug.keystore
-*.jks
-google-services.json
+# RELEASE CHECKPOINT
+# *.keystore
+# !debug.keystore
+# *.jks
+# google-services.json
 .kotlin/
 
 # node.js
