@@ -33,8 +33,18 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
+	<!-- Location permission strings shown to user in system dialog -->
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>GlobalMahasabha needs your location to track your position.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>GlobalMahasabha needs your location in the background to continue tracking when the app is closed.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>GlobalMahasabha needs your location in the background to continue tracking when the app is closed.</string>
+	<!-- Enables CoreLocation to deliver updates while app is in background -->
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 	<key>RCTNewArchEnabled</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
