@@ -7,10 +7,15 @@ export const API_TIMEOUT = 15000; // 15 seconds
 //   Vihar API → { ok: boolean,      message, data }
 export const ENDPOINTS = {
   // ── Auth (Main API) ──────────────────────────────────────────────
-  LOGIN:           '/api/login.php',
-  REGISTER:        '/api/register.php',
-  LOCATIONS:       '/api/locations.php',
-  UPDATE_USER:     '/api/update_user.php',
+  LOGIN:                '/api/login.php',
+  REGISTER:             '/api/register.php',
+  STATES:               '/api/states.php',
+  DISTRICTS:            '/api/districts.php',
+  CITIES:               '/api/cities.php',
+  PREVIEW_USER_CODE:    '/api/preview_user_code.php',
+  UPDATE_USER:          '/api/update_user.php',
+  FORGOT_PASSWORD:      '/api/forgot_password.php',
+  VERIFY_OTP:           '/api/forgot_password_verify.php',
 
   // ── Vihar Mobile API ─────────────────────────────────────────────
   HOME:            '/vihar/api/mobile/home.php',

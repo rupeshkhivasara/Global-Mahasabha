@@ -49,16 +49,14 @@ export async function register(params: RegisterParams): Promise<MainResponse<Reg
 // ── Locations (States / Districts / Cities) ───────────────────────────────────
 
 export async function getStates(): Promise<MainResponse<LocationsData>> {
-  const { data } = await client.get<MainResponse<LocationsData>>(
-    `${ENDPOINTS.LOCATIONS}?type=states`,
-  );
+  const { data } = await client.get<MainResponse<LocationsData>>(ENDPOINTS.STATES);
   return data;
 }
 
 export async function getDistricts(state_id: number): Promise<MainResponse<LocationsData>> {
-  const { data } = await client.get<MainResponse<LocationsData>>(
-    `${ENDPOINTS.LOCATIONS}?type=districts&state_id=${state_id}`,
-  );
+  const { data } = await client.get<MainResponse<LocationsData>>(ENDPOINTS.DISTRICTS, {
+    params: { state_id },
+  });
   return data;
 }
 
@@ -66,8 +64,44 @@ export async function getCities(
   state_id: number,
   district_id: number,
 ): Promise<MainResponse<LocationsData>> {
-  const { data } = await client.get<MainResponse<LocationsData>>(
-    `${ENDPOINTS.LOCATIONS}?type=cities&state_id=${state_id}&district_id=${district_id}`,
+  const { data } = await client.get<MainResponse<LocationsData>>(ENDPOINTS.CITIES, {
+    params: { state_id, district_id },
+  });
+  return data;
+}
+
+export async function previewUserCode(
+  state_id: number,
+  district_id: number,
+  city_id: number,
+): Promise<MainResponse<{ user_code: string }>> {
+  const { data } = await client.get<MainResponse<{ user_code: string }>>(
+    ENDPOINTS.PREVIEW_USER_CODE,
+    { params: { state_id, district_id, city_id } },
+  );
+  return data;
+}
+
+// ── Forgot Password ───────────────────────────────────────────────────────────
+
+export async function forgotPassword(mobile: string): Promise<MainResponse<null>> {
+  const { data } = await client.post<MainResponse<null>>(
+    ENDPOINTS.FORGOT_PASSWORD,
+    toFormData({ mobile }),
+  );
+  return data;
+}
+
+export type VerifyOtpParams = {
+  mobile: string;
+  otp: string;
+  new_password: string;
+};
+
+export async function verifyOtp(params: VerifyOtpParams): Promise<MainResponse<null>> {
+  const { data } = await client.post<MainResponse<null>>(
+    ENDPOINTS.VERIFY_OTP,
+    toFormData(params as unknown as Record<string, unknown>),
   );
   return data;
 }
