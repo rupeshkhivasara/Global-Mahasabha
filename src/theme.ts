@@ -8,7 +8,7 @@ export const GRADIENT_DIR = { start: { x: 0, y: 0 }, end: { x: 1, y: 1 } };
 
 // ── Brand colors ──────────────────────────────────────────────────────────────
 export const ACCENT      = '#c2591c';   // solid text/icon accent  (was #ec5f69)
-export const ACCENT_DARK = '#9e3e10';   // darker shade (logo title)
+export const ACCENT_DARK = '#8a3417';   // darker shade (logo title)
 export const ACCENT_DEEP = '#6b2508';   // deepest shade (shadows)
 
 // ── Text colors ───────────────────────────────────────────────────────────────
@@ -19,7 +19,7 @@ export const TEXT_PALE     = '#b7b3b3';   // placeholders
 export const TEXT_DISABLED = '#6b6363';   // disabled state
 
 // ── Background colors ─────────────────────────────────────────────────────────
-export const BG_PAGE  = '#fdf6e8';   // warm ivory screen background  (was #fdf5f5)
+export const BG_PAGE  = '#fffdf6';   // screen background (was #fdf6e8)
 export const BG_FIELD = '#f6f5f5';   // input field fill
 export const BG_SOFT  = '#f8ebd5';   // chip / icon tile tint          (was #fbe1e1)
 export const BG_WHITE = '#ffffff';
@@ -46,6 +46,7 @@ export const SPACING_LG = 24;
 export const SPACING_XL = 32;
 
 // ── Typography ────────────────────────────────────────────────────────────────
+// Legacy size constants kept for backward compatibility.
 export const FONT_XS  = 11;
 export const FONT_SM  = 13;
 export const FONT_MD  = 15;
@@ -53,6 +54,9 @@ export const FONT_LG  = 18;
 export const FONT_XL  = 22;
 export const FONT_2XL = 28;
 export const FONT_3XL = 32;
+
+// Full type scale and font family map — prefer importing directly from typography.ts.
+export { font, typeScale, screenType } from './typography';
 
 // ── Shadow (brand-tinted) ─────────────────────────────────────────────────────
 export const SHADOW_BRAND = {

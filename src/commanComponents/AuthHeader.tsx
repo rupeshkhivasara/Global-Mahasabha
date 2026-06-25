@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {
   GRADIENT, GRADIENT_LOCATIONS, GRADIENT_DIR,
   ACCENT, ACCENT_DARK, ACCENT_DEEP,
-  GRADIENT_END,
   SHADOW_BRAND,
 } from '../theme';
+import { font } from '../typography';
 
 export type AuthHeaderVariant = 'login' | 'register' | 'forgot' | 'verify';
 
@@ -20,9 +20,7 @@ const CONFIG: Record<AuthHeaderVariant, { height: number; radius: number }> = {
 function LogoCard({ align }: { align: 'right' | 'left' }) {
   return (
     <View style={[styles.logoCard, align === 'right' ? styles.logoRight : styles.logoLeft]}>
-      <View style={styles.emblem}>
-        <View style={styles.emblemInner} />
-      </View>
+      <Image source={require('../../assets/icons/vihar_icon.png')} style={styles.emblem} />
       <View>
         <Text style={styles.logoSmall}>Shree Digambar Jain</Text>
         <Text style={styles.logoBig}>Global Mahasabha</Text>
@@ -84,8 +82,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     backgroundColor: '#fff',
     borderRadius: 15,
-    paddingHorizontal: 14,
-    paddingVertical: 10,
+    paddingRight: 13,
+    paddingLeft:7,
+    paddingVertical: 7,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 9,
@@ -94,10 +93,9 @@ const styles = StyleSheet.create({
   logoRight: { top: 18, right: 18 },
   logoLeft:  { top: '50%', left: 18, transform: [{ translateY: -24 }] },
 
-  emblem:      { width: 30, height: 30, borderRadius: 15, borderWidth: 2.5, borderColor: ACCENT, alignItems: 'center', justifyContent: 'center' },
-  emblemInner: { width: 14, height: 14, borderRadius: 7, backgroundColor: GRADIENT_END },
-  logoSmall:   { fontSize: 8,  fontWeight: '600', color: ACCENT, letterSpacing: 0.4 },
-  logoBig:     { fontSize: 12, fontWeight: '800', color: ACCENT_DARK },
+  emblem:      { width: 50, height: 50, borderRadius: 15 },
+  logoSmall:   { fontSize: 10,  fontFamily: font.semibold,  fontWeight: '600', color: ACCENT },
+  logoBig:     { fontSize: 15, fontFamily: font.extrabold, fontWeight: '800', color: ACCENT_DARK },
 
   iconCard: {
     position: 'absolute',

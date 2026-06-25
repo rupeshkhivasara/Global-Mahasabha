@@ -13,9 +13,9 @@ import type { AuthStackParamList } from '../../../App';
 import AuthHeader from '../../commanComponents/AuthHeader';
 import GradientButton from '../../commanComponents/GradientButton';
 import {
-  ACCENT, TEXT_PRIMARY as TEXT, TEXT_MUTED as MUTED,
-  TEXT_LABEL as LABEL, BG_FIELD as FIELD, BORDER_DEFAULT as BORDER,
+  ACCENT, TEXT_PRIMARY as TEXT, BG_FIELD as FIELD, BORDER_DEFAULT as BORDER,
 } from '../../theme';
+import { typeScale as T } from '../../typography';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'Login'>;
 
@@ -128,9 +128,9 @@ const styles = StyleSheet.create({
   container: { flexGrow: 1 },
 
   body:  { paddingHorizontal: 26, paddingTop: 28, paddingBottom: 8 },
-  title: { fontSize: 30, fontWeight: '800', color: TEXT, letterSpacing: -0.5, marginBottom: 24 },
+  title: { ...T.display, fontSize: 30, fontWeight: '800', marginBottom: 24 },
 
-  label: { fontSize: 15, fontWeight: '600', color: LABEL, marginBottom: 9 },
+  label: { ...T.label, fontSize: 15, fontWeight: '600', marginBottom: 9 },
   input: {
     height: 52,
     borderWidth: 1.5,
@@ -160,11 +160,11 @@ const styles = StyleSheet.create({
   eyeIcon: { fontSize: 18 },
 
   forgotRow:  { alignItems: 'flex-end', marginBottom: 22 },
-  forgotText: { fontSize: 14, fontWeight: '700', color: ACCENT },
+  forgotText: { ...T.link },
 
-  errorText: { fontSize: 13, color: ACCENT, marginBottom: 12 },
+  errorText: { ...T.error, marginBottom: 12 },
 
   footer:     { flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 22 },
-  footerText: { fontSize: 15, fontWeight: '500', color: MUTED },
-  link:       { fontSize: 15, fontWeight: '700', color: ACCENT },
+  footerText: { ...T.body, fontSize: 15 },
+  link:       { ...T.link, fontSize: 15 },
 });

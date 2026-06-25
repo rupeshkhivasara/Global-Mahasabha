@@ -2,6 +2,7 @@ import React from 'react';
 import { TouchableOpacity, Text, ActivityIndicator, StyleSheet } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { GRADIENT, GRADIENT_LOCATIONS, GRADIENT_DIR, RADIUS_BTN, SHADOW_BTN } from '../theme';
+import { typeScale as T } from '../typography';
 
 interface Props {
   title: string;
@@ -44,6 +45,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     ...SHADOW_BTN,
   },
-  btnText:     { color: '#fff', fontWeight: '700', letterSpacing: 0.2 },
+  btnText:     { ...T.button, letterSpacing: 0.2 },
   btnDisabled: { opacity: 0.65 },
 });

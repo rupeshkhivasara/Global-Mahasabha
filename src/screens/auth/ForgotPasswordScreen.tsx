@@ -14,12 +14,10 @@ import GradientButton from '../../commanComponents/GradientButton';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'ForgotPassword'>;
 
-const ACCENT = '#e11d2a';
-const TEXT   = '#2b2424';
-const MUTED  = '#8a7f7f';
-const LABEL  = '#3a3232';
-const FIELD  = '#f6f5f5';
-const BORDER = '#ececec';
+import {
+  ACCENT, TEXT_PRIMARY as TEXT, BG_FIELD as FIELD, BORDER_DEFAULT as BORDER,
+} from '../../theme';
+import { typeScale as T } from '../../typography';
 
 export default function ForgotPasswordScreen({ navigation }: Props) {
   const insets    = useSafeAreaInsets();
@@ -103,14 +101,14 @@ const styles = StyleSheet.create({
   container: { flexGrow: 1 },
 
   body:     { paddingHorizontal: 26, paddingTop: 30, paddingBottom: 8 },
-  title:    { fontSize: 28, fontWeight: '800', color: TEXT, letterSpacing: -0.5, marginBottom: 10 },
-  subtitle: { fontSize: 14.5, fontWeight: '500', color: MUTED, lineHeight: 22, marginBottom: 30 },
+  title:    { ...T.display, fontWeight: '800', marginBottom: 10 },
+  subtitle: { ...T.subtle, fontSize: 14.5, lineHeight: 22, marginBottom: 30 },
 
-  label:      { fontSize: 15, fontWeight: '600', color: LABEL, marginBottom: 9 },
+  label:      { ...T.label, fontSize: 15, fontWeight: '600', marginBottom: 9 },
   input:      { height: 52, borderWidth: 1.5, borderColor: BORDER, borderRadius: 13, paddingHorizontal: 16, fontSize: 15, color: TEXT, backgroundColor: FIELD, marginBottom: 22 },
   inputError: { borderColor: ACCENT },
-  errorText:  { fontSize: 13, color: ACCENT, marginBottom: 14 },
+  errorText:  { ...T.error, marginBottom: 14 },
 
   backRow:  { alignItems: 'center', marginTop: 24 },
-  backLink: { fontSize: 15, fontWeight: '700', color: ACCENT },
+  backLink: { ...T.link, fontSize: 15 },
 });

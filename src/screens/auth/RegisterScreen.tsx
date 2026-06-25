@@ -13,16 +13,14 @@ import type { AuthStackParamList } from '../../../App';
 import type { LocationState, LocationDistrict, LocationCity } from '../../api';
 import AuthHeader from '../../commanComponents/AuthHeader';
 import GradientButton from '../../commanComponents/GradientButton';
+import {
+  ACCENT, TEXT_PRIMARY as TEXT, TEXT_MUTED as MUTED,
+  BG_FIELD as FIELD, BORDER_DEFAULT as BORDER,
+} from '../../theme';
+import { typeScale as T, font } from '../../typography';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'Register'>;
 type SelectItem = { id: number; label: string };
-
-const ACCENT = '#e11d2a';
-const TEXT   = '#2b2424';
-const MUTED  = '#8a7f7f';
-const LABEL  = '#3a3232';
-const FIELD  = '#f6f5f5';
-const BORDER = '#ececec';
 
 // ── SelectField ───────────────────────────────────────────────────────────────
 
@@ -366,10 +364,10 @@ const styles = StyleSheet.create({
   container: { flexGrow: 1 },
 
   body:  { paddingHorizontal: 22, paddingTop: 24 },
-  title: { fontSize: 23, fontWeight: '800', color: TEXT, letterSpacing: -0.3, marginBottom: 22 },
+  title: { ...T.title, fontWeight: '800', marginBottom: 22 },
 
-  label: { fontSize: 14, fontWeight: '600', color: LABEL, marginBottom: 8 },
-  hi:    { fontWeight: '500' },
+  label: { ...T.label, marginBottom: 8 },
+  hi:    { fontFamily: font.medium, fontWeight: '500' },
   req:   { color: ACCENT },
   input: {
     height: 48,
@@ -385,33 +383,33 @@ const styles = StyleSheet.create({
   multiline:        { height: 80, paddingTop: 12, textAlignVertical: 'top' },
   selectRow:        { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   selectDisabled:   { opacity: 0.45 },
-  selectText:       { fontSize: 14, color: TEXT, flex: 1 },
-  selectPlaceholder:{ fontSize: 14, color: '#b7b3b3', flex: 1 },
+  selectText:       { ...T.body, flex: 1 },
+  selectPlaceholder:{ ...T.body, color: '#b7b3b3', flex: 1 },
   chevron:          { fontSize: 20, color: MUTED },
 
   checkRow:        { flexDirection: 'row', alignItems: 'flex-start', gap: 10, marginTop: 6, marginBottom: 22 },
   checkbox:        { width: 22, height: 22, borderRadius: 6, borderWidth: 2, borderColor: '#cfc8c8', backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center', marginTop: 1 },
   checkboxChecked: { backgroundColor: ACCENT, borderColor: ACCENT },
-  checkmark:       { color: '#fff', fontSize: 13, fontWeight: '700' },
-  checkLabel:      { flex: 1, fontSize: 13.5, fontWeight: '500', color: '#4a4242', lineHeight: 20 },
+  checkmark:       { color: '#fff', fontSize: 13, fontFamily: font.bold, fontWeight: '700' },
+  checkLabel:      { ...T.subtle, fontSize: 13.5, color: '#4a4242', lineHeight: 20, flex: 1 },
 
-  errorText: { fontSize: 13, color: ACCENT, marginBottom: 14 },
+  errorText: { ...T.error, marginBottom: 14 },
 
   footer:     { flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 20, marginBottom: 8 },
-  footerText: { fontSize: 14, fontWeight: '500', color: MUTED },
-  link:       { fontSize: 14, fontWeight: '700', color: ACCENT },
+  footerText: { ...T.body },
+  link:       { ...T.link },
 
   overlay:         { flex: 1, backgroundColor: 'rgba(0,0,0,0.4)', justifyContent: 'flex-end' },
   sheet:           { backgroundColor: '#fff', borderTopLeftRadius: 20, borderTopRightRadius: 20, maxHeight: '75%', paddingBottom: Platform.OS === 'ios' ? 34 : 16 },
   sheetHeader:     { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 16, borderBottomWidth: 1, borderBottomColor: '#F3F4F6' },
-  sheetTitle:      { fontSize: 16, fontWeight: '700', color: TEXT },
+  sheetTitle:      { ...T.cardTitle, fontSize: 16, fontWeight: '700' },
   sheetClose:      { fontSize: 18, color: MUTED, paddingHorizontal: 8 },
   sheetItem:       { paddingHorizontal: 20, paddingVertical: 14 },
-  sheetItemText:   { fontSize: 15, color: TEXT },
+  sheetItemText:   { ...T.body, fontSize: 15 },
   separator:       { height: 1, backgroundColor: '#F3F4F6' },
   sheetCenter:     { alignItems: 'center', justifyContent: 'center', paddingVertical: 48, paddingHorizontal: 24 },
-  sheetCenterText: { fontSize: 14, color: MUTED, textAlign: 'center' },
-  sheetErrorText:  { fontSize: 14, color: ACCENT, textAlign: 'center', marginBottom: 16 },
+  sheetCenterText: { ...T.subtle, textAlign: 'center' },
+  sheetErrorText:  { ...T.error, textAlign: 'center', marginBottom: 16 },
   retryBtn:        { borderWidth: 1.5, borderColor: ACCENT, borderRadius: 8, paddingHorizontal: 24, paddingVertical: 8 },
-  retryBtnText:    { fontSize: 14, color: ACCENT, fontWeight: '600' },
+  retryBtnText:    { ...T.link, fontFamily: font.semibold, fontWeight: '600' },
 });

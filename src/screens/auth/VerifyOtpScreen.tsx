@@ -14,12 +14,12 @@ import GradientButton from '../../commanComponents/GradientButton';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'VerifyOTP'>;
 
+import {
+  ACCENT, TEXT_PRIMARY as TEXT, BG_FIELD as FIELD, BORDER_DEFAULT as BORDER,
+} from '../../theme';
+import { typeScale as T, font } from '../../typography';
+
 const OTP_LENGTH = 6;
-const ACCENT = '#e11d2a';
-const TEXT   = '#2b2424';
-const LABEL  = '#3a3232';
-const FIELD  = '#f6f5f5';
-const BORDER = '#ececec';
 
 export default function VerifyOtpScreen({ navigation, route }: Props) {
   const { mobile } = route.params;
@@ -179,21 +179,21 @@ const styles = StyleSheet.create({
   container: { flexGrow: 1 },
 
   body:  { paddingHorizontal: 22, paddingTop: 24 },
-  title: { fontSize: 24, fontWeight: '800', color: TEXT, letterSpacing: -0.3, marginBottom: 20 },
+  title: { ...T.title, fontSize: 24, fontWeight: '800', letterSpacing: -0.3, marginBottom: 20 },
 
   bannerBox:      { borderRadius: 13, padding: 13, marginBottom: 18, borderWidth: 1 },
   bannerRed:      { backgroundColor: '#fdecec', borderColor: '#f7c9c9' },
   bannerGreen:    { backgroundColor: '#ecfdf5', borderColor: '#a7f3d0' },
-  bannerText:     { fontSize: 13, fontWeight: '500', lineHeight: 19 },
+  bannerText:     { ...T.subtle },
   bannerTextRed:  { color: '#c2261c' },
   bannerTextGreen:{ color: '#065f46' },
 
-  label:        { fontSize: 14, fontWeight: '600', color: LABEL, marginBottom: 8 },
+  label:        { ...T.label, marginBottom: 8 },
   input:        { height: 48, borderWidth: 1.5, borderColor: BORDER, borderRadius: 13, paddingHorizontal: 14, fontSize: 14, color: TEXT, backgroundColor: FIELD, marginBottom: 18 },
   inputReadOnly:{ color: '#6b6363', backgroundColor: '#f0eeee' },
 
   otpRow:      { flexDirection: 'row', gap: 8, marginBottom: 18 },
-  otpBox:      { flex: 1, height: 52, borderWidth: 1.5, borderColor: BORDER, borderRadius: 12, textAlign: 'center', fontSize: 20, fontWeight: '700', color: TEXT, backgroundColor: FIELD },
+  otpBox:      { flex: 1, height: 52, borderWidth: 1.5, borderColor: BORDER, borderRadius: 12, textAlign: 'center', fontSize: 20, fontFamily: font.bold, fontWeight: '700', color: TEXT, backgroundColor: FIELD },
   otpBoxFilled:{ borderColor: ACCENT, backgroundColor: '#fff' },
 
   pwRow:   { flexDirection: 'row', alignItems: 'center', marginBottom: 18 },
@@ -201,7 +201,7 @@ const styles = StyleSheet.create({
   eyeBtn:  { position: 'absolute', right: 12, padding: 4 },
   eyeIcon: { fontSize: 17 },
 
-  errorText:   { fontSize: 13, color: ACCENT, marginBottom: 14 },
+  errorText:   { ...T.error, marginBottom: 14 },
   centeredRow: { alignItems: 'center', marginTop: 18 },
-  accentLink:  { fontSize: 14.5, fontWeight: '700', color: ACCENT },
+  accentLink:  { ...T.link, fontSize: 14.5 },
 });

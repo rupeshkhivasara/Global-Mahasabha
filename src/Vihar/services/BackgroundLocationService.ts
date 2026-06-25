@@ -1,7 +1,6 @@
 import { Platform, PermissionsAndroid, Alert, Linking } from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 import BackgroundService from 'react-native-background-actions';
-import notifee, { AndroidImportance } from '@notifee/react-native';
 import { updateGurujiLocation, getAuthUserId } from '../../api';
 
 export type LocationData = {
@@ -23,29 +22,15 @@ export function setLocationCallback(cb: LocationCallback) {
   onLocationUpdate = cb;
 }
 
-// ─── Notification ─────────────────────────────────────────────────────────────
-
-export async function showLocationNotification(loc: LocationData) {
-  const channelId = await notifee.createChannel({
-    id: 'location-tracking',
-    name: 'Location Tracking',
-    importance: AndroidImportance.HIGH,
-  });
-
-  await notifee.displayNotification({
-    id: 'location-tracking',
-    title: 'Location Update',
-    body: `Lat: ${loc.latitude.toFixed(6)}   Lng: ${loc.longitude.toFixed(6)}\nAccuracy: ${loc.accuracy.toFixed(1)} m`,
-    android: { channelId, pressAction: { id: 'default' } },
-  });
-}
-
 // ─── Permission ───────────────────────────────────────────────────────────────
 
 export async function checkLocationPermission(): Promise<'granted' | 'background' | 'denied'> {
   if (Platform.OS === 'ios') {
-    const status = await Geolocation.requestAuthorization('always');
-    return status === 'granted' ? 'background' : 'denied';
+    // requestAuthorization is idempotent on iOS: returns current status without
+    // showing the dialog again if the user has already decided.
+    // Use 'whenInUse' here so a pure check never triggers the "always" upgrade prompt.
+    const status = await Geolocation.requestAuthorization('whenInUse');
+    return status === 'granted' ? 'granted' : 'denied';
   }
 
   const fine = await PermissionsAndroid.check(
@@ -138,10 +123,47 @@ export async function requestLocationPermission(): Promise<boolean> {
   return true;
 }
 
+// ─── Rate-limiter state (API sender + UI callback) ───────────────────────────
+
+const API_MIN_INTERVAL_MS = 60_000; // 1 minute
+const POSITION_THRESHOLD  = 0.0005; // ~55 m in lat/lng degrees
+
+let lastApiSentAt  = 0;
+let lastApiSentLat = 0;
+let lastApiSentLng = 0;
+
+let lastCbAt  = 0;
+let lastCbLat = 0;
+let lastCbLng = 0;
+
+// Fire onLocationUpdate at most once per minute, and only when position moved.
+function shouldFireCallback(loc: LocationData): boolean {
+  const now     = Date.now();
+  const elapsed = now - lastCbAt;
+  const dlat    = Math.abs(loc.latitude  - lastCbLat);
+  const dlng    = Math.abs(loc.longitude - lastCbLng);
+  const moved   = dlat > POSITION_THRESHOLD || dlng > POSITION_THRESHOLD;
+
+  if (lastCbAt === 0) {
+    lastCbAt = now; lastCbLat = loc.latitude; lastCbLng = loc.longitude;
+    return true;
+  }
+  if (!moved) return false;
+  if (elapsed < API_MIN_INTERVAL_MS) return false;
+
+  lastCbAt = now; lastCbLat = loc.latitude; lastCbLng = loc.longitude;
+  return true;
+}
+
 // ─── Location watcher ─────────────────────────────────────────────────────────
 
 function startWatcher() {
   if (watcherId !== null) return;
+
+  // Reset rate-limiter state so the very first fix always fires the callback
+  // and sends to API, regardless of when tracking last ran.
+  lastCbAt = 0; lastCbLat = 0; lastCbLng = 0;
+  lastApiSentAt = 0; lastApiSentLat = 0; lastApiSentLng = 0;
 
   watcherId = Geolocation.watchPosition(
     position => {
@@ -155,8 +177,9 @@ function startWatcher() {
         timestamp: position.timestamp,
       };
 
-      onLocationUpdate?.(loc);
-      showLocationNotification(loc);
+      if (shouldFireCallback(loc)) {
+        onLocationUpdate?.(loc);
+      }
       sendLocationToAPI(loc);
     },
     error => console.warn('[Location] watchPosition error:', error.message),
@@ -183,16 +206,31 @@ function stopWatcher() {
 
 async function sendLocationToAPI(loc: LocationData) {
   const userId = getAuthUserId();
-  if (!userId) return; // not logged in — skip
+  if (!userId) return;
+
+  const now     = Date.now();
+  const elapsed = now - lastApiSentAt;
+
+  const dlat  = Math.abs(loc.latitude  - lastApiSentLat);
+  const dlng  = Math.abs(loc.longitude - lastApiSentLng);
+  const moved = dlat > POSITION_THRESHOLD || dlng > POSITION_THRESHOLD;
+
+  // First fix: always send
+  // After that: only if 1 min passed AND position changed
+  if (lastApiSentAt > 0 && (elapsed < API_MIN_INTERVAL_MS || !moved)) return;
+
+  lastApiSentAt  = now;
+  lastApiSentLat = loc.latitude;
+  lastApiSentLng = loc.longitude;
 
   try {
     await updateGurujiLocation({
-      user_id: userId,
-      lat: loc.latitude,
-      lng: loc.longitude,
-      accuracy: loc.accuracy,
-      speed: loc.speed ?? undefined,
-      heading: loc.heading ?? undefined,
+      user_id:    userId,
+      lat:        loc.latitude,
+      lng:        loc.longitude,
+      accuracy:   loc.accuracy,
+      speed:      loc.speed    ?? undefined,
+      heading:    loc.heading  ?? undefined,
       tracked_at: new Date(loc.timestamp).toISOString(),
     });
     console.log('[Location] Sent to API:', loc.latitude, loc.longitude);
