@@ -121,7 +121,7 @@ const hdr = StyleSheet.create({
 
 // ── Main component ────────────────────────────────────────────────────────────
 
-export default function DashboardScreen() {
+export default function ViharDashboardScreen() {
   useAuth(); // keeps auth context subscribed; signOut lives in MoreMenuScreen
   const navigation = useNavigation<DashNavProp>();
 

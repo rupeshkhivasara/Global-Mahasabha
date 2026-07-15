@@ -9,7 +9,7 @@ import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import LinearGradient from 'react-native-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import DashboardScreen   from './DashboardScreen';
+import ViharDashboardScreen from './ViharDashboardScreen';
 import GurujiListScreen  from './GurujiListScreen';
 import RoutePlanScreen from './RoutePlanScreen';
 import DonateScreen    from './DonateScreen';
@@ -160,7 +160,7 @@ export default function MainTabNavigator() {
     <Tab.Navigator
       tabBar={props => <CustomTabBar {...props} />}
       screenOptions={{ headerShown: false }}>
-      <Tab.Screen name="Home"      component={DashboardScreen} />
+      <Tab.Screen name="Home"      component={ViharDashboardScreen} />
       <Tab.Screen name="Gurudev"   component={GurujiListScreen} />
       <Tab.Screen name="RoutePlan" component={RoutePlanScreen} />
       <Tab.Screen name="Donate"    component={DonateScreen} />
