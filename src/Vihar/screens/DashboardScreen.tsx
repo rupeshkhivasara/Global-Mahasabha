@@ -18,7 +18,7 @@ import {
   IconBell, IconMapPin,
 } from '../../commanComponents/Icons';
 import { useAuth } from '../../context/AuthContext';
-import { getHome } from '../../api';
+import { getHome, BASE_URL } from '../../api';
 import type { HomeData, Banner } from '../../api/types';
 import {
   checkLocationPermission,
@@ -299,9 +299,9 @@ export default function DashboardScreen() {
                   <View style={[styles.bannerItem, { width: BANNER_W }]}>
                     {item.image_url ? (
                       <Image
-                        source={{ uri: item.image_url }}
+                        source={{ uri: BASE_URL + item.image_url }}
                         style={styles.bannerImg}
-                        resizeMode="cover"
+                        resizeMode="contain"
                       />
                     ) : (
                       <LinearGradient
@@ -491,7 +491,7 @@ const styles = StyleSheet.create({
   section:   { paddingHorizontal: 22, marginBottom: 10},
 
   // ── Banner ──
-  bannerItem: { borderRadius: RADIUS_XL, overflow: 'hidden', height: 150 },
+  bannerItem: { borderRadius: RADIUS_XL, overflow: 'hidden', height: 150, backgroundColor: BG_SOFT },
   bannerImg:  { width: '100%', height: '100%' },
   bannerPlaceholder: {
     flex: 1, padding: 20, justifyContent: 'flex-end',
