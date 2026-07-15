@@ -8,6 +8,7 @@ import ForgotPasswordScreen from './auth/ForgotPasswordScreen';
 import VerifyOtpScreen    from './auth/VerifyOtpScreen';
 import MainTabNavigator   from './MainTabNavigator';
 import WebViewScreen      from './WebViewScreen';
+import GurujiListScreen   from './GurujiListScreen';
 
 // ── Navigation types ──────────────────────────────────────────────────────────
 
@@ -19,8 +20,9 @@ export type AuthStackParamList = {
 };
 
 export type AppStackParamList = {
-  MainTabs: undefined;
-  WebView:  { url: string; title: string };
+  MainTabs:    undefined;
+  WebView:     { url: string; title: string };
+  GurujiList:  undefined;
 };
 
 const AuthStack = createNativeStackNavigator<AuthStackParamList>();
@@ -42,8 +44,9 @@ export default function RootNavigator() {
   if (user) {
     return (
       <AppStack.Navigator screenOptions={{ headerShown: false }}>
-        <AppStack.Screen name="MainTabs" component={MainTabNavigator} />
-        <AppStack.Screen name="WebView"  component={WebViewScreen} />
+        <AppStack.Screen name="MainTabs"   component={MainTabNavigator} />
+        <AppStack.Screen name="WebView"    component={WebViewScreen} />
+        <AppStack.Screen name="GurujiList" component={GurujiListScreen} />
       </AppStack.Navigator>
     );
   }

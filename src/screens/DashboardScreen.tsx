@@ -11,6 +11,7 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import type { CompositeNavigationProp } from '@react-navigation/native';
 import StatusBarSpacer from '../commanComponents/StatusBarSpacer';
+import GurujiCard from '../commanComponents/GurujiCard';
 import {
   IconRoute, IconHeart, IconMap, IconUsers, IconBookmark, IconLandmark,
   IconDonors, IconMedical, IconInfo, IconLock,
@@ -30,7 +31,7 @@ import {
   GRADIENT, GRADIENT_LOCATIONS, GRADIENT_DIR,
   ACCENT,
   BG_PAGE, BG_SOFT, BG_WHITE,
-  SHADOW_BRAND, RADIUS_LG, RADIUS_XL,
+  SHADOW_BRAND, RADIUS_XL,
 } from '../theme';
 import { typeScale as T, screenType } from '../typography';
 import type { AppStackParamList } from './RootNavigator';
@@ -54,6 +55,11 @@ function resolveUrl(link: string): string {
   if (link.startsWith('http')) return link;
   if (link.startsWith('../'))  return SITE_BASE + link.slice(3);
   return VIHAR_BASE + link;
+}
+
+function formatDistance(distance: number | null | undefined): string {
+  const value = Number(distance);
+  return Number.isFinite(value) ? `${value.toFixed(1)} km` : '— km';
 }
 
 async function reverseGeocode(lat: number, lng: number): Promise<string> {
@@ -140,7 +146,7 @@ export default function DashboardScreen() {
     try {
       const res = await getHome({ lat, lng, guruji_limit: 4 });
       if (res.ok) setHomeData(res.data);
-    } catch (_) {
+    } catch {
       // silent — show cached data if any
     } finally {
       setLoading(false);
@@ -376,36 +382,24 @@ export default function DashboardScreen() {
               <SectionHeader
                 title="Nearby Gurudev"
                 actionLabel="View All"
-                onAction={() => openWebView('guruji_list.php', 'Gurudev')}
+                onAction={() => navigation.getParent<NativeStackNavigationProp<AppStackParamList>>()
+                  ?.navigate('GurujiList')}
               />
-              {gurujiList.map(g => (
-                <TouchableOpacity
-                  key={g.id}
-                  style={styles.guruCard}
-                  onPress={() => openWebView(
-                    `guruji_detail.php?g=${g.guruji_token}`,
-                    g.name,
-                  )}
-                  activeOpacity={0.8}>
-                  <View style={styles.guruAvatar}>
-                    {g.profile_url ? (
-                      <Image source={{ uri: g.profile_url }} style={styles.guruAvatarImg} />
-                    ) : (
-                      <Text style={styles.guruAvatarEmoji}>🧘</Text>
+              <View style={styles.guruGrid}>
+                {gurujiList.map((g, index) => (
+                  <GurujiCard
+                    key={g.id}
+                    name={g.name}
+                    distanceKm={g.distance_km}
+                    index={index}
+                    width={(SCREEN_W - 44 - 12) / 2}
+                    onPress={() => openWebView(
+                      `guruji_detail.php?g=${g.guruji_token}`,
+                      g.name,
                     )}
-                  </View>
-                  <View style={styles.guruInfo}>
-                    <Text style={styles.guruName} numberOfLines={1}>{g.name}</Text>
-                    <Text style={styles.guruSub}>Maharaj</Text>
-                  </View>
-                  {g.distance_km != null && (
-                    <View style={styles.guruDist}>
-                      <Text style={styles.guruDistNum}>{g.distance_km.toFixed(1)}</Text>
-                      <Text style={styles.guruDistUnit}>km</Text>
-                    </View>
-                  )}
-                </TouchableOpacity>
-              ))}
+                  />
+                ))}
+              </View>
             </View>
           )}
 
@@ -545,31 +539,12 @@ const styles = StyleSheet.create({
   },
   viharBtnText: { ...T.link, fontSize: 12 },
 
-  // ── Gurudev list ──
-  guruCard: {
-    backgroundColor: BG_WHITE,
-    borderRadius: RADIUS_LG,
-    padding: 13,
+  // ── Gurudev grid ──
+  guruGrid: {
     flexDirection: 'row',
-    alignItems: 'center',
+    flexWrap: 'wrap',
     gap: 12,
-    marginBottom: 10,
-    ...SHADOW_BRAND,
   },
-  guruAvatar: {
-    width: 46, height: 46, borderRadius: 14,
-    backgroundColor: BG_SOFT,
-    alignItems: 'center', justifyContent: 'center',
-    overflow: 'hidden',
-  },
-  guruAvatarImg:   { width: '100%', height: '100%' },
-  guruAvatarEmoji: { fontSize: 22 },
-  guruInfo:  { flex: 1 },
-  guruName:  { ...screenType.guruName },
-  guruSub:   { ...screenType.guruRole, marginTop: 2 },
-  guruDist:  { alignItems: 'flex-end' },
-  guruDistNum:  { ...screenType.guruDistNum },
-  guruDistUnit: { ...T.overline },
 
   // ── More grid ──
   moreGrid: {
