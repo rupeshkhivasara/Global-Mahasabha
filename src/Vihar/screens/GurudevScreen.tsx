@@ -3,13 +3,13 @@ import { View, Text, StyleSheet, ActivityIndicator, BackHandler } from 'react-na
 import WebView from 'react-native-webview';
 import { useFocusEffect } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
-import StatusBarSpacer from '../commanComponents/StatusBarSpacer';
-import { GRADIENT, GRADIENT_LOCATIONS, GRADIENT_DIR, BG_PAGE } from '../theme';
-import { font } from '../typography';
+import StatusBarSpacer from '../../commanComponents/StatusBarSpacer';
+import { GRADIENT, GRADIENT_LOCATIONS, GRADIENT_DIR, BG_PAGE } from '../../theme';
+import { font } from '../../typography';
 
-const ROUTE_URL = 'https://globalmahasabha.com/vihar/route_planner.php';
+const GURUDEV_URL = 'https://globalmahasabha.com/vihar/guruji_list.php';
 
-export default function RoutePlanScreen() {
+export default function GurudevScreen() {
   const webRef = useRef<WebView>(null);
   const [canGoBack, setCanGoBack] = useState(false);
   const [loading, setLoading]     = useState(true);
@@ -34,7 +34,7 @@ export default function RoutePlanScreen() {
         start={GRADIENT_DIR.start}
         end={GRADIENT_DIR.end}
         style={styles.header}>
-        <Text style={styles.headerTitle}>Route Planner</Text>
+        <Text style={styles.headerTitle}>Gurudev</Text>
       </LinearGradient>
 
       {loading && (
@@ -45,7 +45,7 @@ export default function RoutePlanScreen() {
 
       <WebView
         ref={webRef}
-        source={{ uri: ROUTE_URL }}
+        source={{ uri: GURUDEV_URL }}
         style={styles.webview}
         onLoadStart={() => setLoading(true)}
         onLoadEnd={() => setLoading(false)}

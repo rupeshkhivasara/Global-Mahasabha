@@ -3,7 +3,7 @@ import {
   View, Text, TouchableOpacity, StyleSheet, Platform,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { ACCENT, BG_WHITE } from '../theme';
+import { ACCENT, BG_WHITE } from '../../theme';
 
 export interface GurujiCardProps {
   name: string;

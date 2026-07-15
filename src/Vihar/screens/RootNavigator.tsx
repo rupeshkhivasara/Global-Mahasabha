@@ -1,11 +1,11 @@
 import React from 'react';
 import { ActivityIndicator, View } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useAuth } from '../context/AuthContext';
-import LoginScreen        from './auth/LoginScreen';
-import RegisterScreen     from './auth/RegisterScreen';
-import ForgotPasswordScreen from './auth/ForgotPasswordScreen';
-import VerifyOtpScreen    from './auth/VerifyOtpScreen';
+import { useAuth } from '../../context/AuthContext';
+import LoginScreen        from '../../auth/LoginScreen';
+import RegisterScreen     from '../../auth/RegisterScreen';
+import ForgotPasswordScreen from '../../auth/ForgotPasswordScreen';
+import VerifyOtpScreen    from '../../auth/VerifyOtpScreen';
 import MainTabNavigator   from './MainTabNavigator';
 import WebViewScreen      from './WebViewScreen';
 import GurujiListScreen   from './GurujiListScreen';

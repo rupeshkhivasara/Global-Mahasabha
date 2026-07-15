@@ -17,12 +17,12 @@ import MoreMenuScreen  from './MoreMenuScreen';
 
 import {
   GRADIENT, GRADIENT_LOCATIONS, GRADIENT_DIR, ACCENT,
-} from '../theme';
-import { typeScale as T, font } from '../typography';
+} from '../../theme';
+import { typeScale as T, font } from '../../typography';
 import {
   IconHomeActive, IconHomeInactive, IconMapTab,
   IconHeartTab, IconMoreTab,
-} from '../commanComponents/Icons';
+} from '../../commanComponents/Icons';
 
 // ── Param list ────────────────────────────────────────────────────────────────
 

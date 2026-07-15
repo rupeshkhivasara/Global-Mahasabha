@@ -10,30 +10,30 @@ import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import type { CompositeNavigationProp } from '@react-navigation/native';
-import StatusBarSpacer from '../commanComponents/StatusBarSpacer';
-import GurujiCard from '../commanComponents/GurujiCard';
+import StatusBarSpacer from '../../commanComponents/StatusBarSpacer';
+import GurujiCard from '../viharCommanComponents/GurujiCard';
 import {
   IconRoute, IconHeart, IconMap, IconUsers, IconBookmark, IconLandmark,
   IconDonors, IconMedical, IconInfo, IconLock,
   IconBell, IconMapPin,
-} from '../commanComponents/Icons';
-import { useAuth } from '../context/AuthContext';
-import { getHome } from '../api';
-import type { HomeData, Banner } from '../api/types';
+} from '../../commanComponents/Icons';
+import { useAuth } from '../../context/AuthContext';
+import { getHome } from '../../api';
+import type { HomeData, Banner } from '../../api/types';
 import {
   checkLocationPermission,
   requestLocationPermission,
   startBackgroundLocation,
   stopBackgroundLocation,
   setLocationCallback,
-} from '../Vihar/services/BackgroundLocationService';
+} from '../../Vihar/services/BackgroundLocationService';
 import {
   GRADIENT, GRADIENT_LOCATIONS, GRADIENT_DIR,
   ACCENT,
   BG_PAGE, BG_SOFT, BG_WHITE,
   SHADOW_BRAND, RADIUS_XL,
-} from '../theme';
-import { typeScale as T, screenType } from '../typography';
+} from '../../theme';
+import { typeScale as T, screenType } from '../../typography';
 import type { AppStackParamList } from './RootNavigator';
 import type { MainTabParamList } from './MainTabNavigator';
 
@@ -243,7 +243,7 @@ export default function DashboardScreen() {
         {/* Greeting row */}
         <View style={styles.headerRow}>
           <View style={styles.headerLeft}>
-            <Image source={require('../../assets/icons/vihar_icon.png')} style={styles.emblem} />
+            <Image source={require('../../../assets/icons/vihar_icon.png')} style={styles.emblem} />
             <View>
               <Text style={styles.greetSub}>Jai Jinendra 🙏</Text>
               <Text style={styles.greetMain}>Global Mahasabha</Text>

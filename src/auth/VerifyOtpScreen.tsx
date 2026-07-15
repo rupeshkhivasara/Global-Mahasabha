@@ -4,20 +4,20 @@ import {
   StyleSheet, KeyboardAvoidingView, Platform,
   ScrollView, ActivityIndicator,
 } from 'react-native';
-import StatusBarSpacer from '../../commanComponents/StatusBarSpacer';
+import StatusBarSpacer from '../commanComponents/StatusBarSpacer';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { verifyOtp, forgotPassword } from '../../api';
-import type { AuthStackParamList } from '../../../App';
-import AuthHeader from '../../commanComponents/AuthHeader';
-import GradientButton from '../../commanComponents/GradientButton';
+import { verifyOtp, forgotPassword } from '../api';
+import type { AuthStackParamList } from '../../App';
+import AuthHeader from '../commanComponents/AuthHeader';
+import GradientButton from '../commanComponents/GradientButton';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'VerifyOTP'>;
 
 import {
   ACCENT, TEXT_PRIMARY as TEXT, BG_FIELD as FIELD, BORDER_DEFAULT as BORDER,
-} from '../../theme';
-import { typeScale as T, font } from '../../typography';
+} from '../theme';
+import { typeScale as T, font } from '../typography';
 
 const OTP_LENGTH = 6;
 

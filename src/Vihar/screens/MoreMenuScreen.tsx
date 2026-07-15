@@ -5,20 +5,20 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import StatusBarSpacer from '../commanComponents/StatusBarSpacer';
+import StatusBarSpacer from '../../commanComponents/StatusBarSpacer';
 import {
   IconRoute, IconHeart, IconMap, IconUsers, IconBookmark, IconLandmark,
   IconDonors, IconMedical, IconInfo, IconLock, IconUserCircle,
   IconLogOut, IconChevronRight,
-} from '../commanComponents/Icons';
-import { useAuth } from '../context/AuthContext';
+} from '../../commanComponents/Icons';
+import { useAuth } from '../../context/AuthContext';
 import {
   GRADIENT, GRADIENT_LOCATIONS, GRADIENT_DIR,
   ACCENT, BG_PAGE, BG_SOFT, BG_WHITE,
   TEXT_PRIMARY, BORDER_DEFAULT,
   SHADOW_BRAND, RADIUS_XL,
-} from '../theme';
-import { typeScale as T, font, screenType } from '../typography';
+} from '../../theme';
+import { typeScale as T, font, screenType } from '../../typography';
 import type { AppStackParamList } from './RootNavigator';
 import type { MainTabParamList } from './MainTabNavigator';
 import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';

@@ -8,23 +8,23 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import StatusBarSpacer from '../commanComponents/StatusBarSpacer';
-import { IconMapPin } from '../commanComponents/Icons';
-import GurujiCard, { formatDistance } from '../commanComponents/GurujiCard';
-import { getGurujiList } from '../api/endpoints/vihar';
-import type { Guruji } from '../api/types';
+import StatusBarSpacer from '../../commanComponents/StatusBarSpacer';
+import { IconMapPin } from '../../commanComponents/Icons';
+import GurujiCard, { formatDistance } from '../viharCommanComponents/GurujiCard';
+import { getGurujiList } from '../../api/endpoints/vihar';
+import type { Guruji } from '../../api/types';
 import {
   checkLocationPermission,
   requestLocationPermission,
   startBackgroundLocation,
   stopBackgroundLocation,
   setLocationCallback,
-} from '../Vihar/services/BackgroundLocationService';
+} from '../../Vihar/services/BackgroundLocationService';
 import {
   GRADIENT, GRADIENT_LOCATIONS, GRADIENT_DIR,
   ACCENT, BG_PAGE,
-} from '../theme';
-import { typeScale as T } from '../typography';
+} from '../../theme';
+import { typeScale as T } from '../../typography';
 import type { AppStackParamList } from './RootNavigator';
 
 type NavProp = NativeStackNavigationProp<AppStackParamList>;

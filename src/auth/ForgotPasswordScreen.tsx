@@ -4,20 +4,20 @@ import {
   StyleSheet, KeyboardAvoidingView, Platform,
   ScrollView,
 } from 'react-native';
-import StatusBarSpacer from '../../commanComponents/StatusBarSpacer';
+import StatusBarSpacer from '../commanComponents/StatusBarSpacer';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { forgotPassword } from '../../api';
-import type { AuthStackParamList } from '../../../App';
-import AuthHeader from '../../commanComponents/AuthHeader';
-import GradientButton from '../../commanComponents/GradientButton';
+import { forgotPassword } from '../api';
+import type { AuthStackParamList } from '../../App';
+import AuthHeader from '../commanComponents/AuthHeader';
+import GradientButton from '../commanComponents/GradientButton';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'ForgotPassword'>;
 
 import {
   ACCENT, TEXT_PRIMARY as TEXT, BG_FIELD as FIELD, BORDER_DEFAULT as BORDER,
-} from '../../theme';
-import { typeScale as T } from '../../typography';
+} from '../theme';
+import { typeScale as T } from '../typography';
 
 export default function ForgotPasswordScreen({ navigation }: Props) {
   const insets    = useSafeAreaInsets();

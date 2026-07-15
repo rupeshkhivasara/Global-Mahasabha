@@ -4,18 +4,18 @@ import {
   StyleSheet, KeyboardAvoidingView, Platform,
   ScrollView,
 } from 'react-native';
-import StatusBarSpacer from '../../commanComponents/StatusBarSpacer';
+import StatusBarSpacer from '../commanComponents/StatusBarSpacer';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { login } from '../../api';
-import { useAuth } from '../../context/AuthContext';
-import type { AuthStackParamList } from '../../../App';
-import AuthHeader from '../../commanComponents/AuthHeader';
-import GradientButton from '../../commanComponents/GradientButton';
+import { login } from '../api';
+import { useAuth } from '../context/AuthContext';
+import type { AuthStackParamList } from '../../App';
+import AuthHeader from '../commanComponents/AuthHeader';
+import GradientButton from '../commanComponents/GradientButton';
 import {
   ACCENT, TEXT_PRIMARY as TEXT, BG_FIELD as FIELD, BORDER_DEFAULT as BORDER,
-} from '../../theme';
-import { typeScale as T } from '../../typography';
+} from '../theme';
+import { typeScale as T } from '../typography';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'Login'>;
 

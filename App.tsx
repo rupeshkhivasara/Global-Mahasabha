@@ -6,8 +6,8 @@ import messaging from '@react-native-firebase/messaging';
 import notifee, { AndroidImportance } from '@notifee/react-native';
 import { setupNotifications, onForegroundMessage } from './src/services/notifications';
 import { AuthProvider } from './src/context/AuthContext';
-import RootNavigator from './src/screens/RootNavigator';
-export type { AuthStackParamList } from './src/screens/RootNavigator';
+import RootNavigator from './src/Vihar/screens/RootNavigator';
+export type { AuthStackParamList } from './src/Vihar/screens/RootNavigator';
 
 // ── Global font defaults (spec §1d) ──────────────────────────────────────────
 // When Poppins-Regular is installed, every <Text> and <TextInput> will use it

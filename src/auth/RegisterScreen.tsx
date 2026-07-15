@@ -4,20 +4,20 @@ import {
   StyleSheet, KeyboardAvoidingView, Platform,
   ScrollView, ActivityIndicator, Modal, FlatList,
 } from 'react-native';
-import StatusBarSpacer from '../../commanComponents/StatusBarSpacer';
+import StatusBarSpacer from '../commanComponents/StatusBarSpacer';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { register, login, getStates, getDistricts, getCities } from '../../api';
-import { useAuth } from '../../context/AuthContext';
-import type { AuthStackParamList } from '../../../App';
-import type { LocationState, LocationDistrict, LocationCity } from '../../api';
-import AuthHeader from '../../commanComponents/AuthHeader';
-import GradientButton from '../../commanComponents/GradientButton';
+import { register, login, getStates, getDistricts, getCities } from '../api';
+import { useAuth } from '../context/AuthContext';
+import type { AuthStackParamList } from '../../App';
+import type { LocationState, LocationDistrict, LocationCity } from '../api';
+import AuthHeader from '../commanComponents/AuthHeader';
+import GradientButton from '../commanComponents/GradientButton';
 import {
   ACCENT, TEXT_PRIMARY as TEXT, TEXT_MUTED as MUTED,
   BG_FIELD as FIELD, BORDER_DEFAULT as BORDER,
-} from '../../theme';
-import { typeScale as T, font } from '../../typography';
+} from '../theme';
+import { typeScale as T, font } from '../typography';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'Register'>;
 type SelectItem = { id: number; label: string };

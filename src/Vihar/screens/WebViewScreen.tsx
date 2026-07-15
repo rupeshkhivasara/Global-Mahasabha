@@ -7,9 +7,9 @@ import { useFocusEffect } from '@react-navigation/native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import LinearGradient from 'react-native-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import StatusBarSpacer from '../commanComponents/StatusBarSpacer';
-import { GRADIENT, GRADIENT_LOCATIONS, GRADIENT_DIR, BG_PAGE } from '../theme';
-import { font } from '../typography';
+import StatusBarSpacer from '../../commanComponents/StatusBarSpacer';
+import { GRADIENT, GRADIENT_LOCATIONS, GRADIENT_DIR, BG_PAGE } from '../../theme';
+import { font } from '../../typography';
 import type { AppStackParamList } from './RootNavigator';
 
 type Props = NativeStackScreenProps<AppStackParamList, 'WebView'>;
