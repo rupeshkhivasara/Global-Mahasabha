@@ -39,6 +39,10 @@
 	<string>GlobalMahasabha needs your location in the background to continue tracking when the app is closed.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>GlobalMahasabha needs your location in the background to continue tracking when the app is closed.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>GlobalMahasabha uses the microphone to listen for your Navkar Mantra recitation during Digital Mala.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>GlobalMahasabha converts your Navkar Mantra recitation to text so it can validate and count each chant.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

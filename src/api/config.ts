@@ -17,6 +17,11 @@ export const ENDPOINTS = {
   FORGOT_PASSWORD:      '/api/forgot_password.php',
   VERIFY_OTP:           '/api/forgot_password_verify.php',
 
+  // ── Digital Mala API ─────────────────────────────────────────────
+  // The server owns the accuracy threshold and all count mutations. A client
+  // must never increase a chant count without an accepted server response.
+  DIGITAL_MALA:         '/api/digital_mala.php',
+
   // ── Vihar Mobile API ─────────────────────────────────────────────
   HOME:            '/vihar/api/mobile/home.php',
   GURUJI_LIST:     '/vihar/api/mobile/guruji_list.php',

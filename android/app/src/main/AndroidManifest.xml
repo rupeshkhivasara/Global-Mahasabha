@@ -2,6 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Digital Mala: spoken Navkar mantra recognition -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- Digital Mala: accepted-chant haptic feedback (Vibration.vibrate throws SecurityException without this) -->
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <!-- Location permissions -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -14,6 +18,14 @@
 
     <!-- Notification permission (Android 13+) -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- Digital Mala: required on Android 11+ so the app can see/bind to the
+         on-device speech recognition service (react-native-speech-recognition-kit) -->
+    <queries>
+      <intent>
+        <action android:name="android.speech.RecognitionService" />
+      </intent>
+    </queries>
 
     <application
       android:name=".MainApplication"

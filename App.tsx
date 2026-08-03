@@ -2,10 +2,12 @@ import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { Text, TextInput } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Provider as ReduxProvider } from 'react-redux';
 import messaging from '@react-native-firebase/messaging';
 import notifee, { AndroidImportance } from '@notifee/react-native';
 import { setupNotifications, onForegroundMessage } from './src/services/notifications';
 import { AuthProvider } from './src/context/AuthContext';
+import { store, hydrateStore } from './src/store';
 import RootNavigator from './src/Vihar/screens/RootNavigator';
 export type { AuthStackParamList } from './src/Vihar/screens/RootNavigator';
 
@@ -53,13 +55,19 @@ export default function App() {
     return unsubscribe;
   }, []);
 
+  useEffect(() => {
+    void hydrateStore();
+  }, []);
+
   return (
-    <SafeAreaProvider>
-      <AuthProvider>
-        <NavigationContainer>
-          <RootNavigator />
-        </NavigationContainer>
-      </AuthProvider>
-    </SafeAreaProvider>
+    <ReduxProvider store={store}>
+      <SafeAreaProvider>
+        <AuthProvider>
+          <NavigationContainer>
+            <RootNavigator />
+          </NavigationContainer>
+        </AuthProvider>
+      </SafeAreaProvider>
+    </ReduxProvider>
   );
 }

@@ -9,6 +9,9 @@ import VerifyOtpScreen    from '../../auth/VerifyOtpScreen';
 import MainTabNavigator   from './MainTabNavigator';
 import WebViewScreen      from './WebViewScreen';
 import GurujiListScreen   from './GurujiListScreen';
+import MainDashboardScreen from '../../screens/MainDashboardScreen';
+import ComingSoonScreen    from '../../screens/ComingSoonScreen';
+import DigitalMalaScreen   from '../../DigitalMala/screens/DigitalMalaScreen';
 
 // ── Navigation types ──────────────────────────────────────────────────────────
 
@@ -20,9 +23,12 @@ export type AuthStackParamList = {
 };
 
 export type AppStackParamList = {
+  MainDashboard: undefined;
   MainTabs:    undefined;
   WebView:     { url: string; title: string };
   GurujiList:  undefined;
+  ComingSoon:  { module: string };
+  DigitalMala: undefined;
 };
 
 const AuthStack = createNativeStackNavigator<AuthStackParamList>();
@@ -43,10 +49,15 @@ export default function RootNavigator() {
 
   if (user) {
     return (
-      <AppStack.Navigator screenOptions={{ headerShown: false }}>
-        <AppStack.Screen name="MainTabs"   component={MainTabNavigator} />
-        <AppStack.Screen name="WebView"    component={WebViewScreen} />
-        <AppStack.Screen name="GurujiList" component={GurujiListScreen} />
+      <AppStack.Navigator
+        screenOptions={{ headerShown: false }}
+        initialRouteName="MainDashboard">
+        <AppStack.Screen name="MainDashboard" component={MainDashboardScreen} />
+        <AppStack.Screen name="MainTabs"      component={MainTabNavigator} />
+        <AppStack.Screen name="WebView"       component={WebViewScreen} />
+        <AppStack.Screen name="GurujiList"    component={GurujiListScreen} />
+        <AppStack.Screen name="ComingSoon"    component={ComingSoonScreen} />
+        <AppStack.Screen name="DigitalMala"   component={DigitalMalaScreen} />
       </AppStack.Navigator>
     );
   }

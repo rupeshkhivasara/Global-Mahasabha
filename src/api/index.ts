@@ -6,3 +6,4 @@ export * from './endpoints/vihar';
 export * from './endpoints/account';
 export * from './endpoints/location';
 export * from './endpoints/places';
+export * from './endpoints/digitalMala';

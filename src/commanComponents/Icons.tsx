@@ -119,6 +119,48 @@ export const IconChevronRight = ({ size = 16, color = '#c3b9b8' }: IconProps) =>
   </Svg>
 );
 
+export const IconChevronLeft = ({ size = 20, color = '#fff' }: IconProps) => (
+  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <Path d="M15 5l-7 7 7 7" stroke={color} strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round" />
+  </Svg>
+);
+
+// ── Module icons (Main Dashboard hub) ─────────────────────────────────────────
+
+export const IconGift = ({ size = 22, color = '#c2591c' }: IconProps) => (
+  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <Path d="M4 8h16v4H4z" stroke={color} strokeWidth={1.7} strokeLinejoin="round" />
+    <Path d="M6 12h12v9H6z" stroke={color} strokeWidth={1.7} strokeLinejoin="round" />
+    <Path
+      d="M12 8v13M12 8s-4.5.2-4.5-2.5C7.5 3.8 12 4 12 8zm0 0s4.5.2 4.5-2.5C16.5 3.8 12 4 12 8z"
+      stroke={color} strokeWidth={1.7} strokeLinejoin="round"
+    />
+  </Svg>
+);
+
+export const IconBriefcase = ({ size = 22, color = '#c2591c' }: IconProps) => (
+  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <Rect x={3} y={7} width={18} height={13} rx={2.5} stroke={color} strokeWidth={1.7} />
+    <Path
+      d="M9 7V5.5A1.5 1.5 0 0110.5 4h3A1.5 1.5 0 0115 5.5V7M3 12h18"
+      stroke={color} strokeWidth={1.7} strokeLinecap="round"
+    />
+  </Svg>
+);
+
+export const IconMala = ({ size = 22, color = '#c2591c' }: IconProps) => (
+  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <Circle cx={12} cy={5} r={1.6} stroke={color} strokeWidth={1.5} />
+    <Circle cx={17.5} cy={7.5} r={1.6} stroke={color} strokeWidth={1.5} />
+    <Circle cx={19.5} cy={13} r={1.6} stroke={color} strokeWidth={1.5} />
+    <Circle cx={6.5} cy={7.5} r={1.6} stroke={color} strokeWidth={1.5} />
+    <Circle cx={4.5} cy={13} r={1.6} stroke={color} strokeWidth={1.5} />
+    <Circle cx={8} cy={17.5} r={1.6} stroke={color} strokeWidth={1.5} />
+    <Circle cx={16} cy={17.5} r={1.6} stroke={color} strokeWidth={1.5} />
+    <Path d="M12 21.5v-2" stroke={color} strokeWidth={1.5} strokeLinecap="round" />
+  </Svg>
+);
+
 // ── Header icons (white on gradient) ──────────────────────────────────────────
 
 export const IconBell = ({ size = 22, color = '#fff' }: IconProps) => (
@@ -179,5 +221,33 @@ export const IconMoreTab = ({ size = 23, color = '#9a9296' }: IconProps) => (
     <Circle cx={5} cy={12} r={1.8} fill={color} />
     <Circle cx={12} cy={12} r={1.8} fill={color} />
     <Circle cx={19} cy={12} r={1.8} fill={color} />
+  </Svg>
+);
+
+// ── Digital Mala bead-ring glyph (MalaEntryCard medallion) ────────────────────
+// 11 beads in a ring + 1 larger marker bead — a miniature 108-bead mala.
+
+interface BeadRingProps {
+  size?: number;
+  beadColor?: string;
+  markerColor?: string;
+}
+
+export const IconMalaBeadRing = ({
+  size = 30, beadColor = '#f0a13c', markerColor = '#7a1f16',
+}: BeadRingProps) => (
+  <Svg width={size} height={size} viewBox="0 0 40 40">
+    <Circle cx={26.9} cy={7}    r={2.3} fill={beadColor} />
+    <Circle cx={32.1} cy={12.2} r={2.3} fill={beadColor} />
+    <Circle cx={34}   cy={20}   r={2.3} fill={beadColor} />
+    <Circle cx={32.1} cy={27.8} r={2.3} fill={beadColor} />
+    <Circle cx={26.9} cy={33}   r={2.3} fill={beadColor} />
+    <Circle cx={20}   cy={34}   r={2.3} fill={beadColor} />
+    <Circle cx={13.1} cy={33}   r={2.3} fill={beadColor} />
+    <Circle cx={7.9}  cy={27.8} r={2.3} fill={beadColor} />
+    <Circle cx={6}    cy={20}   r={2.3} fill={beadColor} />
+    <Circle cx={7.9}  cy={12.2} r={2.3} fill={beadColor} />
+    <Circle cx={13.1} cy={7}    r={2.3} fill={beadColor} />
+    <Circle cx={20}   cy={6}    r={3.6} fill={markerColor} />
   </Svg>
 );
